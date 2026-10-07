@@ -61,15 +61,15 @@ if errorlevel 1 goto failed
 "%ROOT%.venv\Scripts\python.exe" -m pip install --upgrade pip
 if errorlevel 1 goto failed
 
-"%ROOT%.venv\Scripts\python.exe" -c "import torch, torchaudio; assert torch.__version__.split('+')[0] == '2.5.1'; assert torchaudio.__version__.split('+')[0] == '2.5.1'" >nul 2>nul
+"%ROOT%.venv\Scripts\python.exe" -c "import torch, torchaudio, torchvision; assert torch.__version__.split('+')[0] == '2.5.1'; assert torchaudio.__version__.split('+')[0] == '2.5.1'; assert torchvision.__version__.split('+')[0] == '0.20.1'" >nul 2>nul
 if not errorlevel 1 goto base_requirements
 
 echo [DubClean] Установка PyTorch 2.5.1 с поддержкой CUDA 12.1...
-"%ROOT%.venv\Scripts\python.exe" -m pip install torch==2.5.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cu121
+"%ROOT%.venv\Scripts\python.exe" -m pip install torch==2.5.1 torchaudio==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cu121
 if not errorlevel 1 goto base_requirements
 
 echo [DubClean] CUDA-сборка недоступна; устанавливается CPU-сборка PyTorch...
-"%ROOT%.venv\Scripts\python.exe" -m pip install torch==2.5.1 torchaudio==2.5.1
+"%ROOT%.venv\Scripts\python.exe" -m pip install torch==2.5.1 torchaudio==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cpu
 if errorlevel 1 goto failed
 
 :base_requirements

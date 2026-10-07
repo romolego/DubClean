@@ -9,7 +9,11 @@
 # пакета; pip их не ставит.
 # torch/torchaudio ставятся ОТДЕЛЬНО в INSTALL_DEPS.bat: сначала сборка CUDA
 # (cu121) для GPU, при неудаче — CPU-версия с PyPI. Поэтому их здесь нет, чтобы
-# clearvoice не подтянул несовместимую сборку torch.
+# clearvoice не подтянул несовместимую сборку torch. Эти же версии зафиксированы
+# ниже: torchvision иначе может потребовать более новый torch и нарушить пару.
+torch==2.5.1
+torchaudio==2.5.1
+torchvision==0.20.1
 numpy==1.26.4
 scipy==1.13.1
 soundfile==0.12.1
